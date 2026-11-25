@@ -5,8 +5,9 @@ Dense cream-serif newspaper front page (ATM recipe): 46 stories,
 13 pictured (3 leads + 10 cards), UTC timeline, day-in-numbers
 strip, pinned world map, 33 one-line briefs, DATE CHECK box and a
 verification footer. All illustrations are flat vector shapes
-drawn from scratch with PIL primitives. All stories are real,
+drawn from scratch with PIL primitives. All stories are real:
 dated Wednesday 25 November 2026 (or first reported that day),
+except five late stories from Tuesday 24 November, marked TUE,
 sourced from live news search (Reuters, AP, Al Jazeera, UN, ...).
 
 Drawn at 2048x2048 (master), then downscaled to 1024x1024 for
@@ -71,7 +72,7 @@ def hline(y, x0=MX, x1=W - MX, fill=RULE, width=2):
 # ---------------------------------------------------------------- kicker
 fk = F(SANSB, 22)
 text(MX, 28, "ONE DAY OF WORLD NEWS, ONE PICTURE", fk, NAVY)
-text(W - MX, 28, "46 STORIES  ·  7 REGIONS  ·  EVERY ONE FROM THIS WEDNESDAY",
+text(W - MX, 28, "46 STORIES  ·  7 REGIONS  ·  FIVE FROM TUESDAY, MARKED TUE",
      fk, NAVY, anchor="ra")
 hline(64)
 
@@ -81,7 +82,7 @@ text(W // 2, 80, "Wednesday 25 November 2026", fm, INK, anchor="ma")
 hline(176, width=4)
 fsub = F(SANSB, 20)
 text(W // 2, 188,
-     "ASIA 9  ·  MIDDLE EAST 10  ·  EUROPE 14  ·  AMERICAS 7  ·  AFRICA 2  ·  OCEANIA 1  ·  GLOBAL 3",
+     "ASIA 9  ·  MIDDLE EAST 9  ·  EUROPE 14  ·  AMERICAS 8  ·  AFRICA 2  ·  OCEANIA 1  ·  GLOBAL 3",
      fsub, MUTED, anchor="ma")
 hline(224)
 
@@ -94,7 +95,7 @@ timeline = [
     ("01:00 UTC", "Asian stocks tumble\non tariff threats"),
     ("ASIA DAY", "Nvidia suppliers cheer\nHuang's return"),
     ("EUROPE DAY", "Sarkozy case sent\nto trial in Paris"),
-    ("EVENING", "Trump honours Giuliani,\npardons two turkeys"),
+    ("TUE EVENING", "Trump honours Giuliani,\npardons two turkeys"),
 ]
 ty, th = 236, 100
 text(MX, ty - 4, "THE DAY IN UTC", F(SANSB, 18), BRICK)
@@ -112,7 +113,7 @@ ny = 356
 text(MX, ny, "THE DAY IN NUMBERS", F(SANSB, 18), BRICK)
 nums = [
     ("1st", "Pakistani in orbit;\nfirst foreigner on Tiangong"),
-    ("-5.3%", "Kospi's fall at\nits worst point"),
+    ("-5.7%", "Kospi's fall at\nits worst point"),
     ("$3.8bn", "US military aid to\nIsrael now in doubt"),
     ("25", "hostages held in a\nCartagena supermarket"),
     ("53%", "of Germans now oppose\nUkraine military aid"),
@@ -298,21 +299,21 @@ LEADS = [
     (1, "rocket", "GLOBAL", "SPACE", "CONFIRMED – REUTERS",
      "Shenzhou-24 lifts off with first Pakistani in orbit",
      "Zeeshan Ali, 40, joins two Chinese crew on Tiangong; first foreign astronaut aboard the station."),
-    (2, "ship", "EUROPE", "WAR", "CONFIRMED – REUTERS",
+    (2, "ship", "EUROPE", "WAR", "CONFIRMED TUE – REUTERS",
      "Zelenskiy confirms Ukraine hit Russian ship in Baltic",
      "Kyiv owns Saturday's drone strike on a cargo ship in the Gulf of Finland; Norway urges caution."),
     (3, "chart", "ASIA", "MARKETS", "CONFIRMED – REUTERS",
      "Asian stocks tumble as US tariff threats hit sentiment",
-     "Kospi falls 5.3%, Taiwan 5.1%, Nikkei 2.9%; Nvidia gives back 5.9% after Monday's surge."),
+     "Kospi drops 5.7% at its worst, Taiwan 8.2%, Nikkei 3.2%; Nvidia gives back 5.9% after Monday's surge."),
 ]
 CARDS = [
-    (4, "medal", "AMERICAS", "POLITICS", "CONFIRMED – AP",
+    (4, "medal", "AMERICAS", "POLITICS", "CONFIRMED TUE – AP",
      "Trump awards Giuliani the Medal of Freedom",
      "Ex-New York mayor, 82, honoured at White House; led city through 9/11."),
     (5, "plane", "AMERICAS", "IMMIGRATION", "CONFIRMED – AP",
      "Abrego Garcia to self-deport to Spain, AP reports",
      "Salvadoran migrant to fly to Europe on a commercial flight to avoid deportation."),
-    (6, "scales", "EUROPE", "JUSTICE", "CONFIRMED – REUTERS",
+    (6, "scales", "EUROPE", "JUSTICE", "CONFIRMED TUE – REUTERS",
      "Sarkozy corruption case sent to trial in Paris",
      "Ex-president and wife Carla Bruni face trial; first hearing set for 1 April 2027."),
     (7, "flag", "MIDDLE EAST", "WAR", "CONFIRMED – REUTERS",
@@ -327,7 +328,7 @@ CARDS = [
     (10, "blast", "EUROPE", "WAR", "CONFIRMED – REUTERS",
      "Russian strike kills two in Ukraine's Odesa region",
      "Cars and homes hit; drones attack Kyiv late on Tuesday, injuring two."),
-    (11, "chip", "ASIA", "TECH", "CONFIRMED – REUTERS",
+    (11, "chip", "ASIA", "TECH", "CONFIRMED TUE – REUTERS",
      "Huawei convicted in US trial over Iran business",
      "Jury finds firm deceived banks and stole trade secrets; case began in 2018."),
     (12, "santa", "EUROPE", "LIGHT", "CONFIRMED – REUTERS",
@@ -458,15 +459,15 @@ for lon, lat, num in PINS:
     text(qx, qy - 14, str(num), fpin, PAPER, anchor="ma")
 
 text(mapx, map_bot + 12,
-     "ASIA 9 · MIDDLE EAST 10 · EUROPE 14 · AMERICAS 7 · AFRICA 2 · OCEANIA 1 · GLOBAL 3",
+     "ASIA 9 · MIDDLE EAST 9 · EUROPE 14 · AMERICAS 8 · AFRICA 2 · OCEANIA 1 · GLOBAL 3",
      F(SANSB, 16), MUTED)
 
 # --- briefs panel
 bx = mapx + mapw + 24
 bw = W - MX - bx
-text(bx, by + 16, "ALSO ON WEDNESDAY — STORIES 14–46", F(SANSB, 20), BRICK)
+text(bx, by + 16, "ALSO REPORTED — STORIES 14–46", F(SANSB, 20), BRICK)
 BRIEFS = [
-    (14, "US: Trump pardons turkeys Freedom, Feathers (Reuters)"),
+    (14, "US: Trump pardons turkeys Freedom, Feathers (Reuters, Tue)"),
     (15, "US: Fort Hood gunman seeks stay of execution (Reuters)"),
     (16, "US: Huckabee doubts Israel aid ends this year (Reuters)"),
     (17, "US: Thomas Markle indicted over abuse images (Reuters)"),
@@ -525,14 +526,14 @@ d.rectangle([MX, dy, W - MX, dy + 96], fill=(238, 230, 208), outline=RULE)
 text(MX + 16, dy + 10, "DATE CHECK", F(SANSB, 18), BRICK)
 dc = ("Left out on purpose — broke before Wednesday: COP31 collapse (23 Nov) · Russia's 'terrorism' warning "
       "(23 Nov) · Gaza toll 74,746 update (23 Nov) · Democrats' 259 House seats (24 Nov).  "
-      "Not yet: US Thanksgiving (Thu) · Iowa lead-azide blast (Wed morning) · Macy's 100th parade (Thu).")
+      "Not yet: US Thanksgiving (Thu) · Macy's 100th parade (Thu).")
 for j, ln in enumerate(wrap(dc, F(SANS, 18), CW - 32)):
     text(MX + 16, dy + 36 + j * 22, ln, F(SANS, 18), INK)
 
 # ---------------------------------------------------------------- footer
 fy = 1944
 hline(fy)
-foot = ("Every story here happened or was first reported on Wednesday 25 November 2026. "
+foot = ("Stories here happened or were first reported on Wednesday 25 November 2026, except five late stories from Tuesday 24 November, marked TUE. "
         "CLAIM = one side's account, not yet verified. Sources: Reuters, AP, Al Jazeera, UN, "
         "The West Australian, AAP, Rediff, Alfaaz Time, Govt of India. Original drawings.")
 for j, ln in enumerate(wrap(foot, F(SANS, 16), CW)):
